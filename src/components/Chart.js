@@ -1,14 +1,13 @@
 import React, { Component } from "react";
 import { Bar, Line, Pie } from "react-chartjs-2";
-import axios from 'axios';
 
 class Chart extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      chartData: props.chartData
+      chartData: props.chartData,
+      poidCuve: props.poidCuve
     };
-    this.getAllData();
   }
 
   static defaultProps = {
@@ -17,11 +16,6 @@ class Chart extends Component {
     legendPosition: "right",
     location: "City"
   };
-
-  getAllData() {
-    axios.get('http://localhost:8081/getAllData', { crossdomain: true })
-      .then(response => console.log(response))
-  }
 
   render() {
     return (
@@ -49,6 +43,23 @@ class Chart extends Component {
               title: {
                 display: this.props.displayTitle,
                 text: "Température cuve",
+                fontSize: 25
+              },
+              legend: {
+                display: this.props.displayLegend,
+                position: this.props.legendPosition
+              }
+            }}
+          />
+        </div>
+
+        <div style={{ width: 600 }}>
+          <Line
+            data={this.state.poidCuve}
+            options={{
+              title: {
+                display: this.props.displayTitle,
+                text: "Poid de la cuve",
                 fontSize: 25
               },
               legend: {

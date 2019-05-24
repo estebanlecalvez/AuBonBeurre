@@ -16,10 +16,17 @@ connection.connect();
 app.get('/getAllData', function (req, res) {
    connection.query('SELECT * FROM data', function(err, results) {
       if (err) throw err;
-      console.log('The solution is: ', results);
-      res.send(JSON.stringify({"status": 200, "error": null, "response": results}), 200);
+      res.status(200).send(JSON.stringify({"status": 200, "error": null, "datas": results}))
+      // res.send(JSON.stringify({"status": 200, "error": null, "datas": results}), 200);
    });
 })
+
+app.get('/findOneBy', function (req, res) {
+   connection.query('SELECT * FROM data WHERE numUnite=?',[req.query.numUnite], function(err, results) {
+      if (err) throw err;
+      res.send(JSON.stringify({"status": 200, "error": null, "datas": results}), 200);
+   });
+ });
 
 var server = app.listen(8081, function () {
    var host = server.address().address
