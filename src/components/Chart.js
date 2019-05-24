@@ -42,24 +42,7 @@ class Chart extends Component {
             options={{
               title: {
                 display: this.props.displayTitle,
-                text: "Température cuve",
-                fontSize: 25
-              },
-              legend: {
-                display: this.props.displayLegend,
-                position: this.props.legendPosition
-              }
-            }}
-          />
-        </div>
-
-        <div style={{ width: 600 }}>
-          <Line
-            data={this.state.poidCuve}
-            options={{
-              title: {
-                display: this.props.displayTitle,
-                text: "Poid de la cuve",
+                text: "Niveau	bactérien	salmonelle",
                 fontSize: 25
               },
               legend: {
